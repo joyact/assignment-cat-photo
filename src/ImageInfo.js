@@ -9,7 +9,6 @@ class ImageInfo {
     $target.appendChild($imageInfo);
 
     this.data = data;
-
     this.render();
   }
 
@@ -34,7 +33,32 @@ class ImageInfo {
             <span><b>태생</b>: ${origin}</span>
           </figcaption>
         </figure>`;
+
       this.$imageInfo.style.display = 'block';
+
+      const modal = document.querySelector('.ImageInfo');
+      const info = document.querySelector('.content-wrapper');
+      const close = document.querySelector('.close');
+
+      // close button click
+      close.addEventListener('click', () => {
+        this.$imageInfo.style.display = 'none';
+      });
+
+      // background click
+      document.addEventListener('click', (e) => {
+        console.log(e.target);
+        if (e.target == modal && e.target !== info) {
+          this.$imageInfo.style.display = 'none';
+        }
+      });
+
+      // ESC key click
+      window.addEventListener('keydown', (e) => {
+        if (e.keyCode === 27) {
+          this.$imageInfo.style.display = 'none';
+        }
+      });
     } else {
       this.$imageInfo.style.display = 'none';
     }

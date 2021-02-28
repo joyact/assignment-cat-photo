@@ -66,6 +66,7 @@ body * {
   display: inline-block;
   margin: 0 0 1em;
   width: 100%;
+  cursor: pointer;
 }
 
 .SearchInput {
@@ -92,6 +93,12 @@ body * {
   border: 1px solid #eee;
   border-radius: 5px;
   margin: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .ImageInfo .content-wrapper {
+    width: 100%;
+  }
 }
 
 .ImageInfo .title-wrapper {
