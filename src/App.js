@@ -18,9 +18,11 @@ class App {
       $target,
       initialData: this.data,
       onClick: (image) => {
-        this.imageInfo.setState({
-          visible: true,
-          image,
+        api.fetchCatDetail(image.id).then(({ data }) => {
+          this.imageInfo.setState({
+            visible: true,
+            image: data,
+          });
         });
       },
     });
@@ -31,11 +33,15 @@ class App {
         visible: false,
         image: null,
       },
+      onClose: () => {
+        this.imageInfo.setState({
+          visible: false,
+        });
+      },
     });
   }
 
   setState(nextData) {
-    console.log(this);
     this.data = nextData;
     this.searchResult.setState(nextData);
   }

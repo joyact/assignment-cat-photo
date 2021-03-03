@@ -1,14 +1,17 @@
 class ImageInfo {
   $imageInfo = null;
   data = null;
+  // onClose = null;
 
-  constructor({ $target, data }) {
+  constructor({ $target, data, onClose }) {
     const $imageInfo = document.createElement('div');
     $imageInfo.className = 'ImageInfo';
     this.$imageInfo = $imageInfo;
+
     $target.appendChild($imageInfo);
 
     this.data = data;
+    this.onClose = onClose;
     this.render();
   }
 
@@ -18,9 +21,10 @@ class ImageInfo {
   }
 
   render() {
+    const modal = document.querySelector('.ImageInfo');
+
     if (this.data.visible) {
       const { name, url, temperament, origin } = this.data.image;
-
       this.$imageInfo.innerHTML = `
         <figure class="content-wrapper">
           <div class="title-wrapper">
@@ -34,33 +38,34 @@ class ImageInfo {
           </figcaption>
         </figure>`;
 
-      this.$imageInfo.style.display = 'block';
+      modal.classList.add('active');
 
-      const modal = document.querySelector('.ImageInfo');
       const info = document.querySelector('.content-wrapper');
       const close = document.querySelector('.close');
 
       // close button click
       close.addEventListener('click', () => {
-        this.$imageInfo.style.display = 'none';
+        modal.classList.remove('active');
+        this.onClose();
       });
 
       // background click
       document.addEventListener('click', (e) => {
-        console.log(e.target);
         if (e.target == modal && e.target !== info) {
-          this.$imageInfo.style.display = 'none';
+          modal.classList.remove('active');
+          this.onClose();
         }
       });
 
       // ESC key click
       window.addEventListener('keydown', (e) => {
         if (e.keyCode === 27) {
-          this.$imageInfo.style.display = 'none';
+          modal.classList.remove('active');
+          this.onClose();
         }
       });
     } else {
-      this.$imageInfo.style.display = 'none';
+      modal.classList.remove('active');
     }
   }
 }
