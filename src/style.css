@@ -25,10 +25,13 @@ body * {
   column-gap: 1.5em;
 }
 
-.SearchResult {
+.gallery {
+  margin-top: 10px;
+}
+
+.photo-box {
   --minmax: minmax(250px, 1fr);
 
-  margin-top: 10px;
   display: grid;
   grid-template-columns: repeat(4, var(--minmax));
   grid-gap: 10px;
@@ -36,37 +39,62 @@ body * {
 
 /* the number of grid columns */
 @media only screen and (max-width: 992px) {
-  .SearchResult {
+  .photo-box {
     grid-template-columns: repeat(3, var(--minmax));
   }
 }
 
 
 @media only screen and (max-width: 768px) {
-  .SearchResult {
+  .photo-box {
     grid-template-columns: repeat(2, var(--minmax));
   }
 }
 
 
 @media only screen and (max-width: 576px) {
-  .SearchResult {
+  .photo-box {
     grid-template-columns: var(--minmax);
   }
 }
 
-.SearchResult img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
-.SearchResult .item {
+.photo-box .photo {
   background-color: #eee;
   display: inline-block;
   margin: 0 0 1em;
   width: 100%;
   cursor: pointer;
+  position: relative;
+}
+
+.photo-box .photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-box .photo .cat-name{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  background: rgba(0,0,0,0.3);
+  text-align: center;
+  opacity: 0;
+  transition: all .2s ease-in-out;
+}
+
+.photo-box .photo .cat-name span{
+  color: #fff;
+  font-size: 25px;
+  word-break: keep-all;
+  letter-spacing: -1px;
 }
 
 .search-box{
@@ -176,6 +204,14 @@ body * {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+}
+
+.hidden{
+  display: none;
+}
+
+.active{
+  opacity: 1 !important;
 }
 /* dark mode 처리
 @media (prefers-color-scheme: dark) {
