@@ -6,10 +6,10 @@ class SearchInput {
     template.innerHTML = `
         <header>
           <h1>JIBSA</h1>
-          <div class="search-box">
+          <div class"search-box">
             <input type="text" class='search-input'/>
-            <ul class="search-history"></ul>
           </div>
+          <ul class="search-history"></ul>
         </header>
       `;
     this.element = template.content.firstElementChild;
@@ -22,11 +22,18 @@ class SearchInput {
     // 검색 이벤트
     input.addEventListener('keyup', (e) => {
       const value = e.target.value;
-      if (e.keyCode === 13) {
-        onSearch(value); // API 불러오기
+      if (value && e.keyCode === 13) {
+        // API 불러오기
+        onSearch(value);
 
-        this.keywords.push(value); // 검색어 저장
-        this.setHistory(this.keywords);
+        // 검색어 5개 넘으면 자르기
+        if (this.keywords.length >= 5) {
+          this.keywords.pop();
+        }
+
+        this.keywords.unshift(value); // 검색어 -> 배열
+        this.setHistory(this.keywords); // 배열 -> localStorage
+        this.printHistory(this.keywords); // localStorage -> html
         e.target.value = '';
       }
     });
@@ -49,8 +56,21 @@ class SearchInput {
   }
 
   getHistory() {
-    const keyword = JSON.parse(localStorage.getItem('HISTORY')) || [];
-    this.keywords = keyword;
+    const keywords = JSON.parse(localStorage.getItem('HISTORY')) || [];
+    this.keywords = keywords;
+
+    this.printHistory(this.keywords);
+  }
+
+  printHistory(keywords) {
+    // 최근 검색어 목록 출력
+    const list = this.element.querySelector('.search-history');
+    list.innerHTML = '';
+    keywords.map((keyword) => {
+      const item = document.createElement('li');
+      item.textContent = keyword;
+      list.appendChild(item);
+    });
   }
 
   render() {

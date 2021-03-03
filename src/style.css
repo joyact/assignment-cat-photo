@@ -75,6 +75,24 @@ body * {
   padding: 10px 15px;
 }
 
+.search-history {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 20px;
+}
+
+
+.search-history li{
+  border: 1px solid #000;
+  border-radius: 5px;
+  margin-right: 15px;
+  padding: 10px;
+}
+
 .ImageInfo {
   position: fixed;
   left: 0;
