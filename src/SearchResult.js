@@ -15,25 +15,34 @@ class SearchResult {
   }
 
   setState(nextData) {
-    this.data = nextData;
+    this.data = nextData.data;
+    this.loading = nextData.loading;
     this.render();
   }
 
   render() {
-    this.$searchResult.innerHTML = this.data
-      .map(
-        (cat) => `
-          <div class="item">
-            <img src=${cat.url} alt=${cat.name} />
-          </div>
-        `
-      )
-      .join('');
+    // loading cat pics
+    if (this.loading) {
+      this.$searchResult.innerHTML = `검색 중`;
+    }
 
-    this.$searchResult.querySelectorAll('.item').forEach(($item, index) => {
-      $item.addEventListener('click', () => {
-        this.onClick(this.data[index]);
+    // loaded cat pics
+    if (!this.loading && this.data) {
+      this.$searchResult.innerHTML = this.data
+        .map(
+          (cat) => `
+            <div class="item">
+              <img src=${cat.url} alt=${cat.name} />
+            </div>
+          `
+        )
+        .join('');
+
+      this.$searchResult.querySelectorAll('.item').forEach(($item, index) => {
+        $item.addEventListener('click', () => {
+          this.onClick(this.data[index]);
+        });
       });
-    });
+    }
   }
 }
