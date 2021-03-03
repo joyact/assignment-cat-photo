@@ -69,10 +69,22 @@ body * {
   cursor: pointer;
 }
 
+.search-box{
+  display: flex;  
+}
+
 .search-input {
   width: 100%;
   font-size: 40px;
   padding: 10px 15px;
+}
+
+.search-button{
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 50px;
+  cursor: pointer;
 }
 
 .search-history {
@@ -84,7 +96,6 @@ body * {
   padding: 0;
   margin-top: 20px;
 }
-
 
 .search-history li{
   border: 1px solid #000;

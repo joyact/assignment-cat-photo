@@ -1,13 +1,14 @@
 class SearchInput {
   keywords = [];
-  constructor({ $target, onSearch }) {
+  constructor({ $target, onSearch, onRandomCats }) {
     // html 만들기
     const template = document.createElement('template');
     template.innerHTML = `
         <header>
           <h1>JIBSA</h1>
-          <div class"search-box">
+          <div class="search-box">
             <input type="text" class='search-input'/>
+            <button class="search-button">😻</button>
           </div>
           <ul class="search-history"></ul>
         </header>
@@ -45,6 +46,10 @@ class SearchInput {
         e.target.value = '';
       }
     });
+
+    // 랜덤 검색 버튼
+    const button = this.element.querySelector('.search-button');
+    button.addEventListener('click', () => onRandomCats());
 
     console.log('SearchInput created.', this);
     $target.appendChild(this.element);

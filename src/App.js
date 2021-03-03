@@ -24,6 +24,22 @@ class App {
           })
         );
       },
+
+      onRandomCats: () => {
+        // loading cat pics
+        this.setState({
+          data: null,
+          loading: true,
+        });
+
+        // loaded cat pics
+        api.fetchRandomCats().then(({ data }) =>
+          this.setState({
+            data,
+            loading: false,
+          })
+        );
+      },
     });
 
     this.searchResult = new SearchResult({
