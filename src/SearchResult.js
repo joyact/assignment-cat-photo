@@ -21,13 +21,18 @@ class SearchResult {
   }
 
   render() {
-    // loading cat pics
+    // 로딩 중
     if (this.loading) {
-      this.$searchResult.innerHTML = `검색 중`;
+      this.$searchResult.innerHTML = `<p>검색 중</p>`;
     }
 
-    // loaded cat pics
-    if (!this.loading && this.data) {
+    // 로딩 후, 데이터가 없을 때 (data = [])
+    if (!this.loading && !this.data.length) {
+      this.$searchResult.innerHTML = `<p>검색결과가 없습니다</p>`;
+    }
+
+    // 로딩 후, 데이터가 있을 때
+    if (!this.loading && !!this.data.length) {
       this.$searchResult.innerHTML = this.data
         .map(
           (cat) => `
