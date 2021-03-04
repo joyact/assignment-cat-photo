@@ -72,5 +72,9 @@ class App {
   setState(nextData) {
     this.data = nextData;
     this.searchResult.setState(nextData);
+
+    if (this.data.data) {
+      localStorage.setItem('data', JSON.stringify(this.data.data));
+    }
   }
 }
