@@ -25,130 +25,32 @@ body * {
   column-gap: 1.5em;
 }
 
-/* light, black 모드  */
-.light-theme {
-  color: #000000;
-  background: #ffffff;
-}
-
-.dark-theme {
-  color: #ffffff;
-  background: #000000;
-}
-
-header .theme-button {
-  border: none;
-  background: #ffffff;
-  border-radius: 15px;
-  transition: all 0.5s ease;
-}
-
-.search-box {
-  display: flex;
-}
-
-.search-input {
-  width: 100%;
-  font-size: 40px;
-  padding: 10px 15px;
-}
-
-.search-button {
-  border: none;
-  outline: none;
-  background: none;
-  font-size: 50px;
-  cursor: pointer;
-}
-
-.search-history {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  margin-top: 20px;
-}
-
-.search-history li {
-  border: 1px solid #000;
-  border-radius: 5px;
-  margin-right: 15px;
-  padding: 10px;
-}
-
-/* 사진 목록 */
-.gallery {
+.SearchResult {
   margin-top: 10px;
-}
-
-.photo-box {
-  --minmax: minmax(250px, 1fr);
-
   display: grid;
-  grid-template-columns: repeat(4, var(--minmax));
+  grid-template-columns: repeat(4, minmax(250px, 1fr));
   grid-gap: 10px;
 }
 
-/* the number of grid columns */
-@media only screen and (max-width: 992px) {
-  .photo-box {
-    grid-template-columns: repeat(3, var(--minmax));
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .photo-box {
-    grid-template-columns: repeat(2, var(--minmax));
-  }
-}
-
-@media only screen and (max-width: 576px) {
-  .photo-box {
-    grid-template-columns: var(--minmax);
-  }
-}
-
-.photo-box .photo {
-  background-color: #eee;
-  display: inline-block;
-  margin: 0 0 1em;
-  width: 100%;
-  cursor: pointer;
-  position: relative;
-}
-
-.photo-box .photo img {
+.SearchResult img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.photo-box .photo .cat-name {
-  position: absolute;
-  left: 0;
-  top: 0;
+.SearchResult .item {
+  background-color: #eee;
+  display: inline-block;
+  margin: 0 0 1em;
   width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  background: rgba(0, 0, 0, 0.3);
-  text-align: center;
-  opacity: 0;
-  transition: all 0.2s ease-in-out;
 }
 
-.photo-box .photo .cat-name span {
-  color: #fff;
-  font-size: 25px;
-  word-break: keep-all;
-  letter-spacing: -1px;
+.SearchInput {
+  width: 100%;
+  font-size: 40px;
+  padding: 10px 15px;
 }
 
-/* 모달창 */
 .ImageInfo {
   position: fixed;
   left: 0;
@@ -156,16 +58,16 @@ header .theme-button {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.2s ease-in-out;
 }
 
-/* modal fade in/out */
-.ImageInfo.active {
-  opacity: 1;
-  visibility: visible;
+.ImageInfo .title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ImageInfo .title,
+.ImageInfo .description {
+  padding: 5px;
 }
 
 .ImageInfo .content-wrapper {
@@ -176,73 +78,17 @@ header .theme-button {
   background-color: #fff;
   border: 1px solid #eee;
   border-radius: 5px;
-  margin: 0;
 }
 
-@media only screen and (max-width: 768px) {
-  .ImageInfo .content-wrapper {
-    width: 100%;
-  }
-}
-
-.ImageInfo .title-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.ImageInfo .title-wrapper .title {
-  font-size: 22px;
-  letter-spacing: -1px;
-  word-break: keep-all;
-  margin: 0;
-}
-
-.ImageInfo .title-wrapper .close {
-  font-size: 20px;
-  margin: 0;
-  padding: 0;
-  border: none;
-  outline: none;
-  background: none;
-  cursor: pointer;
-}
-
-.ImageInfo .title-wrapper,
-.ImageInfo .description {
-  padding: 15px;
-}
-
-.ImageInfo img.cat-photo {
+.ImageInfo .content-wrapper img {
   width: 100%;
 }
 
-.ImageInfo .description {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.hidden {
-  display: none;
-}
-
-.active {
-  opacity: 1 !important;
-}
-
-/* darkMode 설정 */
+/* dark mode 처리
 @media (prefers-color-scheme: dark) {
   body {
-    color: #ffffff;
-    background: #000000;
+    background-color: #000;
+    color: white;
   }
 }
-
-/* ligthMode 설정 */
-@media (prefers-color-scheme: light) {
-  body {
-    color: #000000;
-    background-color: #ffffff;
-  }
-}
+*?

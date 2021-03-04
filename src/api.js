@@ -7,10 +7,4 @@ const api = {
       res.json()
     );
   },
-  fetchCatDetail: (id) => {
-    return fetch(`${API_ENDPOINT}/api/cats/${id}`).then((res) => res.json());
-  },
-  fetchRandomCats: () => {
-    return fetch(`${API_ENDPOINT}/api/cats/random50`).then((res) => res.json());
-  },
 };

@@ -6,39 +6,10 @@ class App {
 
   constructor($target) {
     this.$target = $target;
-
     this.searchInput = new SearchInput({
       $target,
       onSearch: (keyword) => {
-        // loading cat pics
-        this.setState({
-          data: null,
-          loading: true,
-        });
-
-        // loaded cat pics
-        api.fetchCats(keyword).then(({ data }) =>
-          this.setState({
-            data,
-            loading: false,
-          })
-        );
-      },
-
-      onRandomCats: () => {
-        // loading cat pics
-        this.setState({
-          data: null,
-          loading: true,
-        });
-
-        // loaded cat pics
-        api.fetchRandomCats().then(({ data }) =>
-          this.setState({
-            data,
-            loading: false,
-          })
-        );
+        api.fetchCats(keyword).then(({ data }) => this.setState(data));
       },
     });
 
@@ -46,11 +17,9 @@ class App {
       $target,
       initialData: this.data,
       onClick: (image) => {
-        api.fetchCatDetail(image.id).then(({ data }) => {
-          this.imageInfo.setState({
-            visible: true,
-            image: data,
-          });
+        this.imageInfo.setState({
+          visible: true,
+          image,
         });
       },
     });
@@ -61,20 +30,12 @@ class App {
         visible: false,
         image: null,
       },
-      onClose: () => {
-        this.imageInfo.setState({
-          visible: false,
-        });
-      },
     });
   }
 
   setState(nextData) {
+    console.log(this);
     this.data = nextData;
     this.searchResult.setState(nextData);
-
-    if (this.data.data) {
-      localStorage.setItem('data', JSON.stringify(this.data.data));
-    }
   }
 }
