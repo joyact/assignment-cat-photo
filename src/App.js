@@ -13,8 +13,11 @@ export default class App {
     this.$target = $target;
     this.searchInput = new SearchInput({
       $target,
-      onSearch: (keyword) => {
-        api.fetchCats(keyword).then(({ data }) => this.setState(data));
+      onSearch: async (keyword) => {
+        const response = await api.fetchCats(keyword);
+        if (response) {
+          this.setState(response.data);
+        }
       },
     });
 
