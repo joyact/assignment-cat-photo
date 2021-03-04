@@ -6,6 +6,7 @@ class SearchInput {
     template.innerHTML = `
         <header>
           <h1>JIBSA</h1>
+          <button class="theme-button">테마변경</button>
           <div class="search-box">
             <input type="text" class='search-input'/>
             <button class="search-button">😻</button>
@@ -14,6 +15,11 @@ class SearchInput {
         </header>
       `;
     this.element = template.content.firstElementChild;
+
+    const theme = this.element.querySelector('.theme-button');
+    theme.addEventListener('click', () => {
+      this.changeTheme(theme);
+    });
 
     // input 속성 부여하기
     const input = this.element.querySelector('.search-input');
@@ -80,5 +86,23 @@ class SearchInput {
 
   render() {
     this.getHistory();
+  }
+
+  // light, black 모드 설정
+  changeTheme(themeButton) {
+    const body = document.querySelector('body');
+
+    if (themeButton) {
+      body.style.transition = '0.3s';
+      // 기본 모드가 dark mode
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        body.classList.toggle('light-theme');
+        themeButton.classList.toggle('dark');
+        // 기본 모드 ligth mode
+      } else {
+        body.classList.toggle('dark-theme');
+        themeButton.classList.toggle('light');
+      }
+    }
   }
 }

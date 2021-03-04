@@ -25,6 +25,60 @@ body * {
   column-gap: 1.5em;
 }
 
+/* light, black 모드  */
+.light-theme {
+  color: #000000;
+  background: #ffffff;
+}
+
+.dark-theme {
+  color: #ffffff;
+  background: #000000;
+}
+
+header .theme-button {
+  border: none;
+  background: #ffffff;
+  border-radius: 15px;
+  transition: all 0.5s ease;
+}
+
+.search-box {
+  display: flex;
+}
+
+.search-input {
+  width: 100%;
+  font-size: 40px;
+  padding: 10px 15px;
+}
+
+.search-button {
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 50px;
+  cursor: pointer;
+}
+
+.search-history {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.search-history li {
+  border: 1px solid #000;
+  border-radius: 5px;
+  margin-right: 15px;
+  padding: 10px;
+}
+
+/* 사진 목록 */
 .gallery {
   margin-top: 10px;
 }
@@ -44,20 +98,17 @@ body * {
   }
 }
 
-
 @media only screen and (max-width: 768px) {
   .photo-box {
     grid-template-columns: repeat(2, var(--minmax));
   }
 }
 
-
 @media only screen and (max-width: 576px) {
   .photo-box {
     grid-template-columns: var(--minmax);
   }
 }
-
 
 .photo-box .photo {
   background-color: #eee;
@@ -74,7 +125,7 @@ body * {
   object-fit: cover;
 }
 
-.photo-box .photo .cat-name{
+.photo-box .photo .cat-name {
   position: absolute;
   left: 0;
   top: 0;
@@ -84,54 +135,20 @@ body * {
   justify-content: center;
   align-items: center;
   margin: 0;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0, 0, 0, 0.3);
   text-align: center;
   opacity: 0;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
-.photo-box .photo .cat-name span{
+.photo-box .photo .cat-name span {
   color: #fff;
   font-size: 25px;
   word-break: keep-all;
   letter-spacing: -1px;
 }
 
-.search-box{
-  display: flex;  
-}
-
-.search-input {
-  width: 100%;
-  font-size: 40px;
-  padding: 10px 15px;
-}
-
-.search-button{
-  border: none;
-  outline: none;
-  background: none;
-  font-size: 50px;
-  cursor: pointer;
-}
-
-.search-history {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  margin-top: 20px;
-}
-
-.search-history li{
-  border: 1px solid #000;
-  border-radius: 5px;
-  margin-right: 15px;
-  padding: 10px;
-}
-
+/* 모달창 */
 .ImageInfo {
   position: fixed;
   left: 0;
@@ -148,7 +165,7 @@ body * {
 /* modal fade in/out */
 .ImageInfo.active {
   opacity: 1;
-  visibility: visible; 
+  visibility: visible;
 }
 
 .ImageInfo .content-wrapper {
@@ -206,18 +223,26 @@ body * {
   align-items: center;
 }
 
-.hidden{
+.hidden {
   display: none;
 }
 
-.active{
+.active {
   opacity: 1 !important;
 }
-/* dark mode 처리
+
+/* darkMode 설정 */
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: #000;
-    color: white;
+    color: #ffffff;
+    background: #000000;
   }
 }
-*?
+
+/* ligthMode 설정 */
+@media (prefers-color-scheme: light) {
+  body {
+    color: #000000;
+    background-color: #ffffff;
+  }
+}
