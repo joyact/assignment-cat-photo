@@ -168,7 +168,7 @@ header .theme-button {
   visibility: visible;
 }
 
-.modal .modal {
+.modal .modal-box {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -180,7 +180,7 @@ header .theme-button {
 }
 
 @media only screen and (max-width: 768px) {
-  .modal .modal {
+  .modal .modal-box {
     width: 100%;
   }
 }

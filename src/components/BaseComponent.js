@@ -9,4 +9,8 @@ export class BaseComponent {
   attachTo(parent) {
     parent.appendChild(this.element);
   }
+
+  overWriteIn(parent) {
+    parent.innerHTML = this.element.outerHTML;
+  }
 }

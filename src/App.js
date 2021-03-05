@@ -24,10 +24,11 @@ export default class App {
     this.searchResult = new SearchResult({
       $target,
       initialData: this.data,
-      onClick: (image) => {
+      onClick: async (image) => {
+        const response = await api.fetchCat(image.id);
         this.imageInfo.setState({
           visible: true,
-          image,
+          image: response.data,
         });
       },
     });
@@ -37,6 +38,11 @@ export default class App {
       data: {
         visible: false,
         image: null,
+      },
+      onClose: () => {
+        this.imageInfo.setState({
+          visible: false,
+        });
       },
     });
   }

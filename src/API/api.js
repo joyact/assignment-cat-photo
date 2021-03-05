@@ -24,4 +24,8 @@ export const api = {
     const data = await request(`${API_ENDPOINT}/api/cats/search?q=${keyword}`);
     return data;
   },
+  fetchCat: async (id) => {
+    const data = await request(`${API_ENDPOINT}/api/cats/${id}`);
+    return data;
+  },
 };

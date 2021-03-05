@@ -32,7 +32,7 @@ export default class SearchResult extends BaseComponent {
       catBox.attachTo(photoBox);
     });
 
-    this.element.querySelectorAll('.item').forEach(($item, index) => {
+    this.element.querySelectorAll('.photo').forEach(($item, index) => {
       $item.addEventListener('click', () => {
         this.onClick(this.data[index]);
       });
