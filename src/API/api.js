@@ -28,4 +28,8 @@ export const api = {
     const data = await request(`${API_ENDPOINT}/api/cats/${id}`);
     return data;
   },
+  fetchRandomCats: async () => {
+    const data = await request(`${API_ENDPOINT}/api/cats/random50`);
+    return data;
+  },
 };

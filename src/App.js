@@ -1,5 +1,5 @@
 import ImageInfo from './components/ImageInfo.js';
-import SearchInput from './components/SearchInput.js';
+import Header from './components/Header.js';
 import SearchResult from './components/SearchResult.js';
 import { api } from './API/api.js';
 
@@ -11,10 +11,16 @@ export default class App {
 
   constructor($target) {
     this.$target = $target;
-    this.searchInput = new SearchInput({
+    this.Header = new Header({
       $target,
       onSearch: async (keyword) => {
         const response = await api.fetchCats(keyword);
+        if (response) {
+          this.setState(response.data);
+        }
+      },
+      onRandom: async () => {
+        const response = await api.fetchRandomCats();
         if (response) {
           this.setState(response.data);
         }

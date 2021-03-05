@@ -1,7 +1,7 @@
 import { BaseComponent } from './BaseComponent.js';
 
 export default class SearchInput extends BaseComponent {
-  constructor({ $target, onSearch }) {
+  constructor(onSearch) {
     super(
       `<input 
         type="text" 
@@ -10,15 +10,11 @@ export default class SearchInput extends BaseComponent {
       />`
     );
 
-    $target.appendChild(this.element);
-
+    this.onSearch = onSearch;
     this.element.addEventListener('keyup', (e) => {
       if (e.keyCode === 13) {
-        onSearch(e.target.value);
+        this.onSearch(e.target.value);
       }
     });
-
-    console.log('SearchInput created.', this);
   }
-  render() {}
 }
