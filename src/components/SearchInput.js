@@ -1,15 +1,18 @@
-const TEMPLATE = '<input type="text">';
+import { BaseComponent } from './BaseComponent.js';
 
-export default class SearchInput {
+export default class SearchInput extends BaseComponent {
   constructor({ $target, onSearch }) {
-    const $searchInput = document.createElement('input');
-    this.$searchInput = $searchInput;
-    this.$searchInput.placeholder = '고양이를 검색해보세요.|';
+    super(
+      `<input 
+        type="text" 
+        class="SearchInput" 
+        placeholder="고양이를 검색해보세요" 
+      />`
+    );
 
-    $searchInput.className = 'SearchInput';
-    $target.appendChild($searchInput);
+    $target.appendChild(this.element);
 
-    $searchInput.addEventListener('keyup', (e) => {
+    this.element.addEventListener('keyup', (e) => {
       if (e.keyCode === 13) {
         onSearch(e.target.value);
       }
