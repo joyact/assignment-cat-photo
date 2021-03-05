@@ -14,15 +14,35 @@ export default class App {
     this.Header = new Header({
       $target,
       onSearch: async (keyword) => {
+        // 로딩 중
+        this.setState({
+          loading: true,
+          data: null,
+        });
+
+        // 로딩 완료
         const response = await api.fetchCats(keyword);
         if (response) {
-          this.setState(response.data);
+          this.setState({
+            loading: false,
+            data: response.data,
+          });
         }
       },
       onRandom: async () => {
+        // 로딩 중
+        this.setState({
+          loading: true,
+          data: null,
+        });
+
+        // 로딩 완료
         const response = await api.fetchRandomCats();
         if (response) {
-          this.setState(response.data);
+          this.setState({
+            loading: false,
+            data: response.data,
+          });
         }
       },
     });
