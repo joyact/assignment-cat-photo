@@ -5,7 +5,7 @@ export default class SearchInput extends BaseComponent {
     super(
       `<input 
         type="text" 
-        class="SearchInput" 
+        class="search-input" 
         placeholder="고양이를 검색해보세요" 
       />`
     );

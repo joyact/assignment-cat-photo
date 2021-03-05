@@ -4,7 +4,7 @@ export class PhotoBox extends BaseComponent {
   constructor(catData) {
     const { id, url, name } = catData;
     super(`
-        <div class="item" id="${id}">
+        <div class="photo" id="${id}">
           <img src=${url} alt=${name} />
         </div>
       `);

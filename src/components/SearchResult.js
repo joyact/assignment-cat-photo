@@ -6,7 +6,12 @@ export default class SearchResult extends BaseComponent {
   onClick = null;
 
   constructor({ $target, initialData, onClick }) {
-    super(`<div class="SearchResult"></div>`);
+    super(`
+      <section class="gallery">
+        <div class="state-box"></div>
+        <div class="photo-box"></div>
+      </section>
+    `);
     $target.appendChild(this.element);
 
     this.data = initialData;
@@ -21,9 +26,10 @@ export default class SearchResult extends BaseComponent {
   }
 
   render() {
+    const photoBox = this.element.querySelector('.photo-box');
     this.data.map((cat) => {
       const catBox = new PhotoBox(cat);
-      catBox.attachTo(this.element);
+      catBox.attachTo(photoBox);
     });
 
     this.element.querySelectorAll('.item').forEach(($item, index) => {

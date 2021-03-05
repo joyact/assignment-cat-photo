@@ -6,7 +6,7 @@ export default class ImageInfo extends BaseComponent {
 
   constructor({ $target, data }) {
     super(`
-      <div class="ImageInfo"></div>
+      <div class="modal"></div>
     `);
 
     $target.appendChild(this.element);
