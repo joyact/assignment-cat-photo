@@ -5,18 +5,47 @@
   font-style: normal;
 } */
 
-html {
-  box-sizing: border-box;
+:root {
+  --font-color: #000;
+  --link-color: #1c75b9;
+  --link-white-color: #fff;
+  --bg-color: rgb(243, 243, 243);
 }
 
-body * {
-  font-family: sans-serif;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --font-color: #c1bfbd;
+    --link-color: #0a86da;
+    --link-white-color: #c1bfbd;
+    --bg-color: #333;
+  }
+}
+
+.theme-light {
+  --font-color: #000;
+  --link-color: #1c75b9;
+  --link-white-color: #fff;
+  --bg-color: rgb(243, 243, 243);
+}
+
+.theme-dark {
+  --font-color: #c1bfbd;
+  --link-color: #0a86da;
+  --link-white-color: #c1bfbd;
+  --bg-color: #333;
 }
 
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  color: var(--font-color);
+  background: var(--bg-color);
+  transition: all 0.4s ease-in-out;
 }
 
 #App {
@@ -25,22 +54,75 @@ body * {
   column-gap: 1.5em;
 }
 
-/* light, black 모드  */
-.light-theme {
-  color: #000000;
-  background: #ffffff;
+/* theme switching button */
+input[type='checkbox'] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 100;
+  cursor: pointer;
 }
 
-.dark-theme {
-  color: #ffffff;
-  background: #000000;
+.theme-button {
+  position: relative;
+  width: 72px;
+  height: 37px;
+  border-radius: 40px;
 }
 
-header .theme-button {
-  border: none;
-  background: #ffffff;
-  border-radius: 15px;
-  transition: all 0.5s ease;
+.theme-button span {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  overflow: hidden;
+  opacity: 1;
+  background-color: #fff;
+  border-radius: 40px;
+  transition: 0.2s ease background-color, 0.2s ease opacity;
+}
+
+.theme-button span:before,
+.theme-button span:after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+  transition: 0.5s ease transform, 0.2s ease background-color;
+}
+
+.theme-button span:before {
+  background-color: #fff;
+  transform: translate(15px, -10px);
+  z-index: 1;
+}
+
+.theme-button span:after {
+  background-color: #000;
+  transform: translate(4px, 0px);
+  z-index: 0;
+}
+
+.theme-button input[type='checkbox']:checked + span {
+  background-color: #000;
+}
+
+.theme-button input[type='checkbox']:active + span {
+  opacity: 0.5;
+}
+
+.theme-button input[type='checkbox']:checked + span:before {
+  background-color: #000;
+  transform: translate(68px, 0);
+}
+
+.theme-button input[type='checkbox']:checked + span:after {
+  background-color: #fff;
+  transform: translate(38px, 0px);
 }
 
 .search-box {
@@ -229,20 +311,4 @@ header .theme-button {
 
 .active {
   opacity: 1 !important;
-}
-
-/* darkMode 설정 */
-@media (prefers-color-scheme: dark) {
-  body {
-    color: #ffffff;
-    background: #000000;
-  }
-}
-
-/* ligthMode 설정 */
-@media (prefers-color-scheme: light) {
-  body {
-    color: #000000;
-    background-color: #ffffff;
-  }
 }
